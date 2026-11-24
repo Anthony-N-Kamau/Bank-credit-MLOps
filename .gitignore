@@ -222,3 +222,12 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 data/
+
+# Project-specific
+data/
+.databricks/
+.env
+*.csv
+*.xls
+*.xlsx
+.DS_Store
