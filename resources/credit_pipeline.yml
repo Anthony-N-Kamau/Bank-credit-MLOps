@@ -1,0 +1,39 @@
+resources:
+  jobs:
+    credit_default_pipeline:
+      name: credit-default-pipeline
+      max_concurrent_runs: 1
+
+      # Runs every Monday at 06:00. Created paused, so switch to UNPAUSED to enable.
+      schedule:
+        quartz_cron_expression: "0 0 6 ? * MON"
+        timezone_id: "Europe/Amsterdam"
+        pause_status: PAUSED
+
+      # No cluster is defined, so tasks run on serverless compute.
+      tasks:
+        - task_key: data_prep
+          notebook_task:
+            notebook_path: ../notebooks/data_prep.py
+
+        - task_key: train_model
+          depends_on:
+            - task_key: data_prep
+          notebook_task:
+            notebook_path: ../notebooks/train_model.py
+
+        - task_key: validate_and_promote
+          depends_on:
+            - task_key: train_model
+          notebook_task:
+            notebook_path: ../notebooks/validate_and_promote.py
+            base_parameters:
+              min_auc_improvement: "0.0"
+              min_absolute_auc: "0.70"
+              fail_if_not_promoted: "false"
+
+        - task_key: batch_and_serving
+          depends_on:
+            - task_key: validate_and_promote
+          notebook_task:
+            notebook_path: ../notebooks/batch_and_serving.py

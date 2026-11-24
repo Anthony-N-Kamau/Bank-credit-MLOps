@@ -1,0 +1,13 @@
+# Databricks Asset Bundle for the credit default MLOps pipeline.
+# Uses the workspace from your default CLI profile (set up with `databricks auth login`).
+
+bundle:
+  name: bank-credit-mlops
+
+include:
+  - resources/*.yml
+
+targets:
+  dev:
+    mode: development
+    default: true
