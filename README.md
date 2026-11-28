@@ -1,6 +1,6 @@
 # Bank Credit Default MLOps on Databricks
 
-An end-to-end MLOps project on Databricks that predicts whether a credit card client will default next month. The goal is to showcase the full lifecycle: data preparation, model development, deployment, automation, ML at scale and advanced monitoring, all governed in Unity Catalog.
+An end-to-end MLOps project on Databricks that predicts whether a credit card client will default next month. It tackles data preparation, model development, deployment, automation, ML at scale and advanced monitoring, all governed in Unity Catalog.
 
 **Stack:** Databricks (Unity Catalog, Delta Lake, MLflow, Lakeflow Jobs, Asset Bundles), PySpark, LightGBM, scikit-learn, SHAP
 
