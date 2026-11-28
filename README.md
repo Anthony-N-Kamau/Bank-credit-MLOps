@@ -116,7 +116,7 @@ The retraining rule fires if 3 or more features have PSI above 0.25, or the scor
 | Age | 40-49 | 1,217 | 0.546 | 0.746 | 0.362 | 0.886 |
 | Age | 50+ | 540 | 0.504 | 0.774 | 0.393 | 0.817 |
 
-## Key findings and honest notes
+## Key findings
 
 1. **Boosting beats the baseline clearly.** LightGBM improves AUC by about 0.03 over logistic regression and cuts expected cost by about 26% at the tuned threshold.
 2. **Tuning did not overfit.** Validation and test performance agree (AUC 0.7915 vs 0.7910), even though the model and threshold were tuned on the validation set.
