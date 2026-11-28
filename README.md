@@ -183,45 +183,8 @@ Bank-credit-MLOps/
    databricks bundle run credit_default_pipeline -t dev
    ```
 
-## Glossary
-
-| Term | Meaning |
-|---|---|
-| **Workspace** | Your Databricks environment: the UI plus the place where notebooks, folders and compute live |
-| **Unity Catalog** | Databricks' governance layer for data and models, with access control, lineage and auditing |
-| **Catalog / Schema** | The top two levels of the `catalog.schema.object` namespace (`bank_mlops` and `credit`) |
-| **Volume** | A Unity Catalog location for files such as CSVs, as opposed to tables |
-| **Delta Lake** | The table format used here: reliable writes, version history and schema enforcement |
-| **Time travel** | Reading an earlier version of a Delta table |
-| **Medallion architecture** | Bronze (raw), Silver (clean) and Gold (model-ready) data layers |
-| **Feature table** | A Delta table with a primary key so features can be looked up by key |
-| **Liquid clustering** | A flexible physical data layout that lets queries skip irrelevant files |
-| **Serverless compute** | Compute managed by Databricks with nothing to configure |
-| **SQL warehouse** | Compute dedicated to SQL queries |
-| **Notebook** | A document of code cells; here stored as `.py` files with a notebook header |
-| **Git folder** | A workspace folder linked to a GitHub repo, which you can pull from and push to |
-| **Databricks CLI** | A command-line tool that controls the workspace from a terminal |
-| **MLflow** | The ML tracking and registry tool built into Databricks |
-| **Experiment / run** | A group of training runs, and one execution with its logged parameters, metrics and files |
-| **Model signature** | The model's expected input columns and output type |
-| **Model Registry** | The governed store of model versions in Unity Catalog |
-| **Alias** | A movable label on a model version (`@champion`, `@challenger`, `@previous_champion`) |
-| **Champion / challenger** | The model in production, and the candidate trying to replace it |
-| **Validation gate** | An automated check that blocks a worse model from being promoted |
-| **Batch scoring** | Scoring many records at once on a schedule |
-| **Model Serving endpoint** | A REST API returning predictions in real time |
-| **Inference table** | A Delta table that logs every endpoint request and response |
-| **Job (Lakeflow Jobs)** | A scheduled or triggered pipeline of tasks |
-| **Asset Bundle** | The pipeline defined as YAML code that can be validated, deployed and run from the CLI |
-| **Target** | A deployment environment in a bundle (here `dev`) |
-| **pandas UDF** | A Python function that Spark applies to batches of rows in parallel |
-| **`mapInPandas` / `applyInPandas`** | Apply a Python function to batches or to each group of a Spark DataFrame |
-| **PSI** | Population Stability Index: how far a distribution has shifted (below 0.10 stable, above 0.25 significant) |
-| **KS statistic** | The largest gap between two cumulative distributions, used as a second drift measure |
-| **Disparate impact ratio** | A group's approval rate divided by the highest group's rate; below 0.80 is a common warning level |
 
 ## Possible next steps
-
 - Bootstrap confidence intervals for the fairness metrics, and retrain without `age` to compare.
 - Replace the synthetic drift scenarios with a time-based split on real production data.
 - Add a CI workflow (GitHub Actions) that validates the bundle on every pull request.
